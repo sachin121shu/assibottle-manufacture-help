@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Schless Bottles</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f8fafc;
+      color: #1f2937;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem 2rem;
+    }
+    nav h1 {
+      font-size: 1.8rem;
+      color: #2563eb;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.2rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #374151;
+      font-weight: 500;
+    }
+    nav ul li a:hover {
+      color: #2563eb;
+    }
+    .hero {
+      background: linear-gradient(to right, #e0f2fe, #f8fafc);
+      text-align: center;
+      padding: 80px 20px;
+      animation: fadeIn 1.2s ease-in;
+    }
+    .hero h2 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #1e3a8a;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: #374151;
+      max-width: 700px;
+      margin: 0 auto 20px;
+    }
+    .hero button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .hero button:hover {
+      transform: scale(1.05);
+      background: #1d4ed8;
+    }
+    .section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+      animation: slideUp 1s ease;
+    }
+    .section h2 {
+      color: #2563eb;
+      margin-bottom: 10px;
+    }
+    .section p, .section ul {
+      line-height: 1.6;
+    }
+    .section ul {
+      padding-left: 20px;
+    }
+    .product-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .product {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .product:hover {
+      transform: translateY(-5px);
+      background: #e0f2fe;
+    }
+    .product img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    .team-member {
+      text-align: center;
+      width: 150px;
+    }
+    .team-member img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+    .testimonial {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+    .testimonial::before {
+      content: "\201C";
+      font-size: 2em;
+      color: #60a5fa;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .contact-form button {
+      width: 100%;
+      background: #2563eb;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
+      border-radius: 12px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #6b7280;
+    }
+    footer a {
+      color: #2563eb;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-10px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes slideUp {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>Schless Bottles</h1>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h2>Innovative, Sustainable Bottles</h2>
+    <p>Designing future-friendly packaging for your brand. From custom prototypes to mass production — we deliver excellence.</p>
+    <button onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })">Get in Touch</button>
+  </section>
+
+  <div class="section" id="about">
+    <h2>About Us</h2>
+    <p>Schless Bottles is a leader in high-quality bottle manufacturing. We blend creativity, sustainability, and engineering to provide cutting-edge packaging for the world’s top brands in cosmetics, health, and food industries. Our commitment to innovation drives everything we do.</p>
+  </div>
+
+  <div class="section">
+    <h2>Why Choose Us</h2>
+    <ul>
+      <li><strong>Custom Bottle Design:</strong> Stand out on the shelf with unique shapes and finishes.</li>
+      <li><strong>Fast Turnaround:</strong> Speedy prototyping and reliable shipping timelines.</li>
+      <li><strong>Eco Materials:</strong> Choose from biodegradable and 100% recyclable options.</li>
+      <li><strong>Dedicated Support:</strong> Work with a team that values your brand's story.</li>
+    </ul>
+  </div>
+
+  <div class="section" id="products">
+    <h2>Featured Products</h2>
+    <div class="product-gallery">
+      <div class="product"><img src="https://via.placeholder.com/200" /><h4>Clear PET Bottle</h4></div>
+      <div class="product"><img src="https://via.placeholder.com/200" /><h4>Glass Dropper Jar</h4></div>
+      <div class="product"><img src="https://via.placeholder.com/200" /><h4>Luxury Lotion Pump</h4></div>
+      <div class="product"><img src="https://via.placeholder.com/200" /><h4>Frosted Cosmetic Tube</h4></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Testimonials</h2>
+    <div class="testimonial">“A partner we can trust for both quality and innovation.” – <strong>Samantha J.</strong></div>
+    <div class="testimonial">“Beautiful packaging that aligns with our eco values.” – <strong>Dev Patel</strong></div>
+  </div>
+
+  <div class="section" id="team">
+    <h2>Our Team</h2>
+    <div class="team">
+      <div class="team-member"><img src="https://via.placeholder.com/100" /><p>Sam – CEO</p></div>
+      <div class="team-member"><img src="https://via.placeholder.com/100" /><p>Lisa – Design Head</p></div>
+      <div class="team-member"><img src="https://via.placeholder.com/100" /><p>Arun – Engineering</p></div>
+      <div class="team-member"><img src="https://via.placeholder.com/100" /><p>Nina – Marketing</p></div>
+    </div>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>Contact Us</h2>
+    <form class="contact-form" onsubmit="event.preventDefault(); alert('Thanks for contacting Schless Bottles!');">
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <div class="section">
+    <h2>Visit Us</h2>
+    <iframe src="https://maps.google.com/maps?q=100%20Middlesex%20Ave,%20Carteret,%20NJ%2007008&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Schless Bottles. All rights reserved. <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+  </footer>
+</body>
+</html>
