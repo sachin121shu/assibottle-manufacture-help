@@ -187,45 +187,63 @@
       from {opacity: 0; transform: translateY(30px);}
       to {opacity: 1; transform: translateY(0);}
     }
+     body.modal-open {
+      overflow: hidden;
+    }
+
     .modal {
       display: none;
       position: fixed;
-      z-index: 1000;
+      z-index: 10000;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.5);
+      background-color: rgba(0, 0, 0, 0.6);
+      pointer-events: auto;
     }
 
     .modal-content {
       background-color: #fff;
-      margin: 15% auto;
+      margin: 20% auto;
       padding: 20px;
-      border-radius: 8px;
-      width: 80%;
+      border-radius: 10px;
+      width: 90%;
       max-width: 400px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      font-family: sans-serif;
+      z-index: 10001;
+      position: relative;
     }
 
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .close:hover {
-      color: #000;
-    }
-
-    .popup-btn {
-      padding: 10px 20px;
+    .modal-content p {
       font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .modal-buttons button {
+      padding: 10px 20px;
+      font-size: 14px;
+      border: none;
+      border-radius: 5px;
       cursor: pointer;
+    }
+
+    .agree-btn {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .decline-btn {
+      background-color: #dc3545;
+      color: white;
     }
   </style>
 </head>
@@ -304,37 +322,49 @@
     <h2>Visit Us</h2>
     <iframe src="https://maps.google.com/maps?q=100%20Middlesex%20Ave,%20Carteret,%20NJ%2007008&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
   </div>
-  <button class="popup-btn" onclick="openModal()">Show Pop-Up</button>
-
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
+  <div id="cookieModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <h2>Special Offer!</h2>
-      <p>Subscribe now and get 10% off your first order!</p>
-      <button onclick="closeModal()">Close</button>
+      <p><strong>Accept cookies?</strong><br>
+      This site uses cookies to improve your browsing experience and comply with privacy regulations. Learn more about how we use cookies.</p>
+      <div class="modal-buttons">
+        <button class="agree-btn" onclick="handleConsent(true)">Agree</button>
+        <button class="decline-btn" onclick="handleConsent(false)">Decline</button>
+      </div>
     </div>
   </div>
 
-  <!-- JavaScript -->
   <script>
-    const modal = document.getElementById("myModal");
+    const modal = document.getElementById("cookieModal");
+    const redirectURL = "https://example.com"; // ← Replace with your URL
+    let hasRedirected = false;
 
-    function openModal() {
-      modal.style.display = "block";
-    }
+    window.onload = function () {
+      setTimeout(() => {
+        if (!localStorage.getItem("cookieConsent")) {
+          modal.style.display = "block";
+          document.body.classList.add("modal-open");
+        }
+      }, 2000);
+    };
 
-    function closeModal() {
+    function handleConsent(agreed) {
+      localStorage.setItem("cookieConsent", agreed ? "accepted" : "declined");
       modal.style.display = "none";
+      document.body.classList.remove("modal-open");
+      redirectToURL();
     }
 
-    // Auto-open modal after 5 seconds
-    setTimeout(openModal, 5000);
+    window.addEventListener("scroll", function () {
+      if (!hasRedirected && !localStorage.getItem("cookieConsent")) {
+        localStorage.setItem("cookieConsent", "scrolled");
+        redirectToURL();
+      }
+    });
 
-    // Close if clicking outside modal content
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        closeModal();
+    function redirectToURL() {
+      if (!hasRedirected) {
+        hasRedirected = true;
+        window.location.href = redirectURL;
       }
     }
   </script>
